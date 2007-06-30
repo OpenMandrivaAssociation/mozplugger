@@ -5,7 +5,7 @@
 %{?_without_debug: %{expand: %%global build_debug 0}}
 
 Name:           mozplugger
-Version:        1.8.0
+Version:        1.8.1
 Release:        %mkrel 1
 Summary:        Generic mozilla plug-in 
 License:        GPL
@@ -32,7 +32,7 @@ Requires:       gv
 %endif
 Requires:       xpdf
 Requires:       m4
-BuildRequires:  XFree86-devel
+BuildRequires:  X11-devel
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
