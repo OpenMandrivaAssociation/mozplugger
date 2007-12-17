@@ -33,7 +33,6 @@ Requires:       gv
 Requires:       xpdf
 Requires:       m4
 BuildRequires:  X11-devel
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 MozPlugger is a generic Mozilla plug-in that allows the use of standard Linux
