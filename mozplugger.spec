@@ -6,7 +6,7 @@
 
 Name:           mozplugger
 Version:        1.8.1
-Release:        %mkrel 1
+Release:        %mkrel 2
 Summary:        Generic mozilla plug-in 
 License:        GPL
 Group:          Networking/WWW
