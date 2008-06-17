@@ -6,7 +6,7 @@
 
 Name:           mozplugger
 Version:        1.10.2
-Release:        %mkrel 1
+Release:        %mkrel 2
 Summary:        Generic mozilla plug-in 
 License:        GPLv2+
 Group:          Networking/WWW
