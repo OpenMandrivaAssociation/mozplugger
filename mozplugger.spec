@@ -5,12 +5,12 @@
 %{?_without_debug: %{expand: %%global build_debug 0}}
 
 Name:           mozplugger
-Version:        1.10.2
-Release:        %mkrel 2
+Version:        1.11.0
+Release:        %mkrel 1
 Summary:        Generic mozilla plug-in 
 License:        GPLv2+
 Group:          Networking/WWW
-Source0:        http://mozplugger.mozdev.org/files/mozplugger-%{version}.tar.bz2
+Source0:        http://mozplugger.mozdev.org/files/mozplugger-%{version}.tar.gz
 Source1:        http://umn.dl.sourceforge.net/sourceforge/mplayerplug-in/mini.tar.bz2
 Source2:        mozmimetypes-1.4.1.tar.bz2
 Patch0:		mozplugger-1.7.4-ooo64native.patch
@@ -89,7 +89,11 @@ programs as plug-ins for media types on the Internet.
          s|\@BINDIR\@|%{_bindir}|g;" \
                 %{buildroot}%{_bindir}/mozpluggerrc-sanitize
 
-%if %{mdkversion} >= 200810
+%if %{mdkversion} >= 200900
+perl -pi -e 's@ooffice2.1@ooffice3.0@g' \
+%{buildroot}%{_sysconfdir}/mozpluggerrc \
+       %{buildroot}%{_sysconfdir}/mozpluggerrc.default
+%elseif %{mdkversion} >= 200810
 perl -pi -e 's@ooffice2.1@ooffice2.4@g' \
 %{buildroot}%{_sysconfdir}/mozpluggerrc \
 	%{buildroot}%{_sysconfdir}/mozpluggerrc.default
