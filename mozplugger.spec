@@ -5,7 +5,7 @@
 %{?_without_debug: %{expand: %%global build_debug 0}}
 
 Name:           mozplugger
-Version:        1.11.0
+Version:        1.12.0
 Release:        %mkrel 1
 Summary:        Generic mozilla plug-in 
 License:        GPLv2+
@@ -15,6 +15,7 @@ Source1:        http://umn.dl.sourceforge.net/sourceforge/mplayerplug-in/mini.ta
 Source2:        mozmimetypes-1.4.1.tar.bz2
 Patch0:		mozplugger-1.7.4-ooo64native.patch
 Patch1:		mozplugger-1.10.1-pulseaudio.patch
+Patch2:		mozplugger-1.12.0-add-extra-libs.patch
 URL:            http://mozplugger.mozdev.org/
 Obsoletes:      plugger
 Provides:       plugger
@@ -48,6 +49,7 @@ programs as plug-ins for media types on the Internet.
 %if %{mdkversion} >= 200810
 %patch1 -p1 -b .pulse
 %endif
+%patch2 -p0 -b .module
 
 %build
 %if %{build_debug}
