@@ -22,7 +22,7 @@ Provides:       plugger
 Requires:       mikmod
 Requires:       mpg123
 Requires:       sox
-Requires:       ImageMagick
+Requires:       imagemagick
 Requires:       gqview
 Requires:       mplayer >= 0.90-0.rc4
 Requires:       perl-base
