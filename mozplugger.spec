@@ -6,7 +6,7 @@
 
 Name:           mozplugger
 Version:        1.12.0
-Release:        %mkrel 1
+Release:        %mkrel 2
 Summary:        Generic mozilla plug-in 
 License:        GPLv2+
 Group:          Networking/WWW
@@ -69,6 +69,7 @@ programs as plug-ins for media types on the Internet.
 
 %{__install} -p -m 755 mozplugger-helper %{buildroot}%{_bindir}
 %{__install} -p -m 755 mozplugger-controller %{buildroot}%{_bindir}
+%{__install} -p -m 755 mozplugger-linker %{buildroot}%{_bindir}
 %{__install} -p -m 755 mozplugger.so %{buildroot}%{_mozillapath}
 %{__install} -p -m 644 mozpluggerrc %{buildroot}%{_sysconfdir}/mozpluggerrc
 %{__install} -p -m 644 mozpluggerrc %{buildroot}%{_sysconfdir}/mozpluggerrc.default
@@ -312,6 +313,7 @@ fi
 %{_bindir}/disable_mozmimetypes
 %{_bindir}/mozpluggerrc-sanitize
 %{_bindir}/mozplugger-helper
+%{_bindir}/mozplugger-linker
 %{_bindir}/mozplugger-controller
 %{_datadir}/mplayer/Skin/mini
 %{_libdir}/netscape/plugins/mozplugger.so
