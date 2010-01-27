@@ -5,7 +5,7 @@
 %{?_without_debug: %{expand: %%global build_debug 0}}
 
 Name:           mozplugger
-Version:        1.13.0
+Version:        1.13.1
 Release:        %mkrel 1
 Summary:        Generic mozilla plug-in 
 License:        GPLv2+
