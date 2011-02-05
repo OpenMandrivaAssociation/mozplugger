@@ -6,7 +6,7 @@
 
 Name:           mozplugger
 Version:        1.13.3
-Release:        %mkrel 2
+Release:        %mkrel 3
 Summary:        Generic mozilla plug-in 
 License:        GPLv2+
 Group:          Networking/WWW
@@ -34,7 +34,7 @@ Requires:       gv
 %endif
 Requires:       xpdf
 Requires:       m4
-BuildRequires:  X11-devel
+BuildRequires:  libx11-devel
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
@@ -53,9 +53,9 @@ programs as plug-ins for media types on the Internet.
 
 %build
 %if %{build_debug}
-%{make} RPM_OPT_FLAGS="%{optflags} -DDEBUG" XLIBDIR="%{_usr}/X11R6/%{_lib}" linux
+%{make} RPM_OPT_FLAGS="%{optflags} -DDEBUG" XLIBDIR="%{_libdir}" linux
 %else
-%{make} RPM_OPT_FLAGS="%{optflags}" XLIBDIR="%{_usr}/X11R6/%{_lib}" linux
+%{make} RPM_OPT_FLAGS="%{optflags}" XLIBDIR="%{_libdir}" linux
 %endif
 
 %install
