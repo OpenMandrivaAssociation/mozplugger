@@ -5,17 +5,15 @@
 %{?_without_debug: %{expand: %%global build_debug 0}}
 
 Name:           mozplugger
-Version:        1.13.3
-Release:        4
+Version:        1.14.5
+Release:        1
 Summary:        Generic mozilla plug-in 
 License:        GPLv2+
 Group:          Networking/WWW
 Source0:        http://mozplugger.mozdev.org/files/mozplugger-%{version}.tar.gz
 Source1:        http://umn.dl.sourceforge.net/sourceforge/mplayerplug-in/mini.tar.bz2
 Source2:        mozmimetypes-1.4.1.tar.bz2
-Patch0:		mozplugger-1.7.4-ooo64native.patch
 Patch1:		mozplugger-1.10.1-pulseaudio.patch
-Patch2:		mozplugger-1.13.3-add-extra-libs.patch
 URL:            http://mozplugger.mozdev.org/
 Obsoletes:      plugger
 Provides:       plugger
@@ -35,7 +33,6 @@ Requires:       gv
 Requires:       xpdf
 Requires:       m4
 BuildRequires:  libx11-devel
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 MozPlugger is a generic Mozilla plug-in that allows the use of standard Linux
@@ -43,23 +40,15 @@ programs as plug-ins for media types on the Internet.
 
 %prep
 %setup -q -a 1 -a 2
-%ifarch x86_64
-%patch0 -p1 -b .64
-%endif
 %if %{mdkversion} >= 200810
 %patch1 -p1 -b .pulse
 %endif
-%patch2 -p0 -b .module
 
 %build
-%if %{build_debug}
-%{make} RPM_OPT_FLAGS="%{optflags} -DDEBUG" XLIBDIR="%{_libdir}" linux
-%else
-%{make} RPM_OPT_FLAGS="%{optflags}" XLIBDIR="%{_libdir}" linux
-%endif
+%configure
+%make
 
 %install
-%{__rm} -rf %{buildroot}
 %{__mkdir_p} %{buildroot}%{_mozillapath}/plugins \
         %{buildroot}%{_libdir}/netscape/plugins \
         %{buildroot}%{_bindir} \
@@ -108,67 +97,6 @@ export DONT_STRIP=1
 
 %clean
 %{__rm} -rf %{buildroot}
-
-
-%triggerin -- acroread-nppdf
-[ "$2" -ge 1 ] || exit 0
-if [ -r %{_sysconfdir}/mozpluggerrc ]; then
-        if [ -x %{_bindir}/disable_mozmimetypes ]; then
-                %{_bindir}/disable_mozmimetypes %{_sysconfdir}/mozpluggerrc \
-                        application/pdf application/x-pdf
-                touch %{_mozillapath}/mozplugger.so
-        fi
-fi
-
-%triggerun -- acroread-nppdf
-[ "$2" = "0" ] || exit 0
-if [ -r %{_sysconfdir}/mozpluggerrc ]; then
-        if [ -x %{_bindir}/enable_mozmimetypes ]; then
-                %{_bindir}/enable_mozmimetypes %{_sysconfdir}/mozpluggerrc \
-                        application/pdf application/x-pdf
-                touch %{_mozillapath}/mozplugger.so
-        fi
-fi
-
-%triggerpostun -- acroread-nppdf
-[ "$2" = "0" ] || exit 0
-if [ -r %{_sysconfdir}/mozpluggerrc ]; then
-        if [ -x %{_bindir}/enable_mozmimetypes ]; then
-                %{_bindir}/enable_mozmimetypes %{_sysconfdir}/mozpluggerrc \
-                        application/pdf application/x-pdf
-                touch %{_mozillapath}/mozplugger.so
-        fi
-fi
-
-%triggerin -- RealPlayer-rpnp
-[ "$2" -ge 1 ] || exit 0
-if [ -r %{_sysconfdir}/mozpluggerrc ]; then
-        if [ -x %{_bindir}/disable_mozmimetypes ]; then
-                %{_bindir}/disable_mozmimetypes %{_sysconfdir}/mozpluggerrc \
-                        audio/x-pn-realaudio-plugin
-                touch %{_mozillapath}/mozplugger.so
-        fi
-fi
-
-%triggerun -- RealPlayer-rpnp
-[ "$2" = "0" ] || exit 0
-if [ -r %{_sysconfdir}/mozpluggerrc ]; then
-        if [ -x %{_bindir}/enable_mozmimetypes ]; then
-                %{_bindir}/enable_mozmimetypes %{_sysconfdir}/mozpluggerrc \
-                        audio/x-pn-realaudio-plugin
-                touch %{_mozillapath}/mozplugger.so
-        fi
-fi
-
-%triggerpostun -- RealPlayer-rpnp
-[ "$2" = "0" ] || exit 0
-if [ -r %{_sysconfdir}/mozpluggerrc ]; then
-        if [ -x %{_bindir}/enable_mozmimetypes ]; then
-                %{_bindir}/enable_mozmimetypes %{_sysconfdir}/mozpluggerrc \
-                        audio/x-pn-realaudio-plugin
-                touch %{_mozillapath}/mozplugger.so
-        fi
-fi
 
 %triggerin -- mplayerplugin
 [ "$2" -ge 1 ] || exit 0
@@ -321,5 +249,4 @@ fi
 %{_mandir}/man7/mozplugger.7*
 %config(noreplace) %{_sysconfdir}/mozpluggerrc
 %config(noreplace) %{_sysconfdir}/mozpluggerrc.default
-
 
