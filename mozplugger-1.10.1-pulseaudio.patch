@@ -1,0 +1,11 @@
+--- mozplugger-1.10.1/mozpluggerrc.pulse	2008-02-04 19:24:04.000000000 +0100
++++ mozplugger-1.10.1/mozpluggerrc	2008-02-04 19:24:18.000000000 +0100
+@@ -36,7 +36,7 @@
+ 
+ ### MPlayer
+ 
+-define(MP_CMD,[mplayer -really-quiet -nojoystick -nofs -zoom -vo xv,x11 -ao esd,alsa,oss,arts,null -osdlevel 0 $1 </dev/null])
++define(MP_CMD,[mplayer -really-quiet -nojoystick -nofs -zoom -vo xv,x11 -ao pulse,esd,alsa,oss,arts,null -osdlevel 0 $1 </dev/null])
+ 
+ define(MP_EMBED,[embed noisy ignore_errors: MP_CMD(-xy $width -wid $window $1)])
+ 
