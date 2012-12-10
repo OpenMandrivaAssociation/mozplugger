@@ -1,6 +1,7 @@
---- mozplugger-1.10.1/mozpluggerrc.pulse	2008-02-04 19:24:04.000000000 +0100
-+++ mozplugger-1.10.1/mozpluggerrc	2008-02-04 19:24:18.000000000 +0100
-@@ -36,7 +36,7 @@
+diff -Naur mozplugger-1.14.6.orig/mozpluggerrc mozplugger-1.14.6/mozpluggerrc
+--- mozplugger-1.14.6.orig/mozpluggerrc	2012-12-04 08:26:06.461813768 -0500
++++ mozplugger-1.14.6/mozpluggerrc	2012-12-04 08:26:13.400813169 -0500
+@@ -28,7 +28,7 @@
  
  ### MPlayer
  

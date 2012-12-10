@@ -1,0 +1,12 @@
+diff -Naur mozplugger-1.14.6.orig/mozpluggerrc mozplugger-1.14.6/mozpluggerrc
+--- mozplugger-1.14.6.orig/mozpluggerrc	2012-12-04 08:26:56.646811800 -0500
++++ mozplugger-1.14.6/mozpluggerrc	2012-12-04 08:27:11.489811559 -0500
+@@ -260,7 +260,7 @@
+ image/tiff:tiff,tif:TIFF image
+ image/x-tiff:tiff,tif:TIFF image
+ 	exits: display -window $window -backdrop "$file"
+-	repeat noisy swallow(gqview) fill: gqview -t "$file"
++	repeat noisy swallow(geeqie) fill: geeqie -t "$file"
+ 	swallow(:) maxaspect: xv -ima -igeom +9000+9000 -geometry +9000+9000 "$file"
+ 	repeat swallow(display): display "$file"
+ 	repeat swallow(Sdtimage) fill: sdtimage "$file"
