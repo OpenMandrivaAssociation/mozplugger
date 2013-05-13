@@ -29,7 +29,7 @@ Requires:       TiMidity++
 Requires:       gv >= 3.6.1
 Requires:       xpdf
 Requires:       m4
-BuildRequires:  libx11-devel
+BuildRequires:  pkgconfig(x11)
 
 %description
 MozPlugger is a generic Mozilla plug-in that allows the use of standard Linux
