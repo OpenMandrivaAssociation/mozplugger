@@ -15,7 +15,7 @@ Source1:        http://umn.dl.sourceforge.net/sourceforge/mplayerplug-in/mini.ta
 Source2:        mozmimetypes-1.4.1.tar.bz2
 Patch1:		mozplugger-1.14.6-pulseaudio.patch
 Patch2:		mozplugger-1.14.6-gqview.patch
-URL:            http://mozplugger.mozdev.org/
+URL:            https://mozplugger.mozdev.org/
 Obsoletes:      plugger
 Provides:       plugger
 Requires:       mikmod
